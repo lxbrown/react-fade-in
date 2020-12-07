@@ -9,14 +9,16 @@
   },
   "scripts": {
     "build": "npm run build:clean && npm run build:lib",
-    "build:clean": "rm -rf lib",
+    "build:clean": "",
     "build:lib": "babel src --out-dir lib",
-    "prepublish": "NODE_ENV=production npm run build",
-    "start": "EXAMPLE=true webpack-dev-server --port 3124 --hot --inline --content-base example/public"
+    "prepublish": "SET NODE_ENV=production && npm run build",
+    "start": "SET EXAMPLE=true && webpack-dev-server --port 3124 --hot --inline --content-base example/public"
   },
   "author": "Graham Kaemmer",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "classnames": "^2.2.6"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
