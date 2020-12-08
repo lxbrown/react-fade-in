@@ -12,7 +12,7 @@
     "build:clean": "",
     "build:lib": "babel src --out-dir lib",
     "prepublish": "SET NODE_ENV=production && npm run build",
-    "start": "SET EXAMPLE=true && webpack-dev-server --port 3124 --hot --inline --content-base example/public"
+    "start": "SET EXAMPLE=true && SET NODE_ENV=dev && webpack-dev-server --port 3124 --hot --inline --content-base example/public"
   },
   "author": "Graham Kaemmer",
   "license": "MIT",

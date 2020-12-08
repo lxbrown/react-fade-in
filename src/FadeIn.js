@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import classNames from 'classnames';
 
 export default class FadeIn extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      maxIsVisible: 0
+      maxIsVisible: 0,
+      assetsLoaded: !props.children.some((child) => (child.type == 'FadeInImage'))
     };
   }
 
@@ -21,6 +22,9 @@ export default class FadeIn extends Component {
     const count = React.Children.count(this.props.children);
     let i = 0;
     this.interval = setInterval(() => {
+      if (!this.state.assetsLoaded) {
+        return;
+      }
       i++;
       if (i > count) clearInterval(this.interval);
 
@@ -32,7 +36,7 @@ export default class FadeIn extends Component {
     clearInterval(this.interval);
   }
 
-  modifyChild(child, i) {
+  fadeChild(child, i) {
     const style={
       transition: `opacity ${this.transitionDuration}ms, transform ${this.transitionDuration}ms`,
       transform: this.state.maxIsVisible > i ? 'none' : 'translateY(20px)',
@@ -44,7 +48,7 @@ export default class FadeIn extends Component {
         child.props.className,
         this.props.childClassName
       );
-
+      
       const props = {
           className,
           style,
@@ -70,7 +74,7 @@ export default class FadeIn extends Component {
 
     return (
       <WrapperTag className={this.props.className}>
-        {React.Children.map(this.props.children, (child, i) => this.modifyChild(child, i))}
+        {React.Children.map(this.props.children, (child, i) => this.fadeChild(child, i))}
       </WrapperTag>
     );
   }

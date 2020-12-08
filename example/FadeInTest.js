@@ -76,6 +76,14 @@ export default class FadeInTest extends Component {
           <Element>Element 5</Element>
           <Element>Element 6</Element>
         </FadeIn>
+        <Title>With Image Tag</Title>
+        <FadeIn childTag=''>
+          <img src='' alt='test'/>
+          <img src='' alt='test'/>
+          <img src='' alt='test'/>
+          <img src='' alt='test'/>
+          <img src='' alt='test'/>
+        </FadeIn>
         <style>{`
           .container {
             border: 1px solid blue;
